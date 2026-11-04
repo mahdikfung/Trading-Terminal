@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#101A2B">
-<title>Market Action — Trading Terminal V7.1</title>
+<title>Market Action — Trading Terminal V8.0</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&family=Lalezar&family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -172,6 +172,13 @@ html,body{width:100%;max-width:100%;overflow-x:hidden}
  .top-actions .btn{min-width:40px}
  .chart-wrap{height:195px}
 }
+
+
+/* V8 AUTH GATE + ACCOUNT CONTROLS */
+.auth-gate{position:fixed;inset:0;z-index:300;display:none;align-items:center;justify-content:center;padding:24px;background:radial-gradient(ellipse at 15% 15%,rgba(49,121,245,.16),transparent 35%),rgba(5,10,18,.97);overflow:auto}
+.auth-gate.show{display:flex}.auth-card{position:relative;z-index:2;width:min(460px,100%);padding:34px;background:linear-gradient(150deg,rgba(22,35,55,.98),rgba(13,22,36,.98));border:1px solid rgba(140,173,215,.2);border-radius:22px;box-shadow:0 28px 90px #0008}
+.auth-brand{display:flex;align-items:center;gap:12px;margin-bottom:36px}.auth-mark{width:43px;height:43px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(145deg,#3179f5,#17428f);font:700 24px Inter;color:#fff;box-shadow:0 8px 26px #3179f544}.auth-brand-name{font:700 14px Inter;letter-spacing:.13em;direction:ltr}.auth-brand-sub,.auth-kicker{font:9px 'IBM Plex Mono';letter-spacing:.13em;color:#7f98b8;direction:ltr;margin-top:4px}.auth-kicker{margin:0 0 10px;color:#6ea0ff}.auth-title{font-size:29px;margin:0 0 7px}.auth-desc{font-size:11px;color:var(--muted);line-height:2;margin:0 0 22px}.auth-tabs{display:grid;grid-template-columns:1fr 1fr;gap:5px;padding:4px;background:#0a1422;border:1px solid var(--line);border-radius:11px;margin-bottom:20px}.auth-tabs button{border:0;background:transparent;color:var(--muted);padding:10px;border-radius:8px;font:500 12px Vazirmatn}.auth-tabs button.active{background:#203650;color:#fff;box-shadow:0 3px 12px #0003}.auth-form{display:grid;gap:13px}.auth-form label{display:grid;gap:7px}.auth-form label span{font-size:10px;color:#a8b9ce}.auth-form input{width:100%;height:45px;border:1px solid rgba(145,170,203,.2);border-radius:9px;background:#0b1524;color:#f1f5fb;padding:0 13px;outline:none;direction:ltr}.auth-form input:focus{border-color:#3179f5;box-shadow:0 0 0 3px #3179f522}.auth-form input::placeholder{color:#60748d}.auth-submit{height:46px;width:100%;margin-top:3px;display:flex;justify-content:space-between;padding:0 16px}.auth-submit:disabled{opacity:.6;cursor:wait}.auth-message{font-size:11px;line-height:1.8;min-height:0;color:#9fc0ff}.auth-message.error{color:#f0a4a4}.auth-message.success{color:#8fd6b1}.auth-forgot{border:0;background:transparent;color:#8db8ff;font:11px Vazirmatn;margin-top:15px;padding:5px 0}.auth-foot{border-top:1px solid var(--line);margin-top:24px;padding-top:16px;color:#71849d;font-size:9px;line-height:2}.auth-lock{color:#79aaff;margin-left:5px}.auth-glow{position:absolute;width:360px;height:360px;border-radius:50%;filter:blur(80px);opacity:.16;pointer-events:none}.auth-glow-a{background:#3179f5;top:-160px;right:-100px}.auth-glow-b{background:#4c78ad;bottom:-180px;left:-90px}.auth-side-note{position:absolute;bottom:22px;left:28px;display:flex;gap:18px;flex-wrap:wrap;color:#52647b;font:8px 'IBM Plex Mono';direction:ltr;letter-spacing:.08em}.account-menu{position:fixed;z-index:180;top:76px;left:22px;display:none;min-width:220px;padding:13px;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow)}.account-menu.show{display:block}.account-menu strong{display:block;font-size:11px;direction:ltr;overflow-wrap:anywhere}.account-menu small{display:block;color:var(--muted);font-size:10px;margin:5px 0 12px}.account-menu button{width:100%}
+@media(max-width:600px){.auth-gate{padding:12px}.auth-card{padding:25px 20px}.auth-title{font-size:25px}.auth-side-note{display:none}.account-menu{top:65px;left:10px}}
 
 </style>
 <style>
@@ -556,12 +563,12 @@ html body #cmdBtn::before{content:"";display:none;width:20px;height:20px;backgro
   </nav>
   <div class="navlabel">PREFERENCES</div>
   <nav class="nav"><button data-page="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="m19.4 15 .1.1 1.4 1.1-1.4 2.4-1.7-.6a8 8 0 0 1-1.7 1l-.3 1.8h-2.8l-.3-1.8a8 8 0 0 1-1.7-1l-1.7.6-1.4-2.4 1.4-1.1a7 7 0 0 1 0-2l-1.4-1.1 1.4-2.4 1.7.6a8 8 0 0 1 1.7-1l.3-1.8h2.8l.3 1.8a8 8 0 0 1 1.7 1l1.7-.6 1.4 2.4-1.4 1.1a7 7 0 0 1 0 2Z" transform="translate(-1 -1)"/></svg><span class="nav-text">تنظیمات</span></button></nav>
-  <div class="sidebar-bottom"><div class="sync-card"><div class="sync-head"><span>وضعیت ذخیره‌سازی</span><span class="dot" id="syncDot"></span></div><div class="sync-sub" id="syncStatus">ذخیره‌سازی محلی فعال است. اتصال Supabase هنوز تنظیم نشده.</div></div><div class="tiny" style="padding:14px 8px 0;font-family:IBM Plex Mono;direction:ltr">PERSONAL TERMINAL · V1.0</div></div>
+  <div class="sidebar-bottom"><div class="sync-card"><div class="sync-head"><span>وضعیت ذخیره‌سازی</span><span class="dot" id="syncDot"></span></div><div class="sync-sub" id="syncStatus">ذخیره‌سازی محلی و ابری</div></div><div class="tiny" style="padding:14px 8px 0;font-family:IBM Plex Mono;direction:ltr">PERSONAL TERMINAL · V8.0</div></div>
 </aside>
 <main class="main">
   <header class="topbar">
     <div style="display:flex;align-items:center;gap:12px"><button class="icon-btn mobile-menu" id="menuBtn" aria-label="menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><div><div class="crumb">WORKSPACE / <span id="crumb">OVERVIEW</span></div><h1 class="page-title" id="pageTitle">داشبورد عملکرد</h1></div></div>
-    <div class="top-actions"><div class="date-chip" id="todayLabel"></div><button class="icon-btn" id="themeBtn" title="تغییر تم"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.5 15.5A8.5 8.5 0 0 1 8.5 3.5 8.5 8.5 0 1 0 20.5 15.5Z"/></svg></button><button class="btn btn-primary" id="quickAdd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg><span>ثبت معامله</span></button></div>
+    <div class="top-actions"><div class="date-chip" id="todayLabel"></div><button class="btn" id="cloudSyncBtn" type="button" title="همگام‌سازی ابری">↻ <span>همگام‌سازی</span></button><button class="btn" id="accountBtn" type="button">حساب کاربری</button><button class="icon-btn" id="themeBtn" title="تغییر تم"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.5 15.5A8.5 8.5 0 0 1 8.5 3.5 8.5 8.5 0 1 0 20.5 15.5Z"/></svg></button><button class="btn btn-primary" id="quickAdd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg><span>ثبت معامله</span></button></div>
   </header>
 
   <section class="page active" id="page-dashboard">
@@ -643,17 +650,31 @@ html body #cmdBtn::before{content:"";display:none;width:20px;height:20px;backgro
         <div class="setting-row"><div><strong>پاک‌کردن داده‌های نمونه</strong><p>حذف دو رکورد نمونه اولیه فایل اکسل</p></div><button class="btn btn-danger" id="clearSamples">پاک‌سازی</button></div>
         <div class="setting-row"><div><strong>حذف تمام داده‌ها</strong><p>این عملیات قابل بازگشت نیست.</p></div><button class="btn btn-danger" id="clearAll">حذف همه</button></div>
       </div>
-      <div class="panel" style="grid-column:1/-1"><div class="panel-title"><h3>Supabase Cloud Sync</h3><span class="tag gold">OPTIONAL · NOT CONNECTED</span></div>
-        <p class="tiny" style="line-height:2">نسخه فعلی به‌صورت مستقل و با Local Storage کار می‌کند. برای همگام‌سازی ابری، ابتدا پروژه Supabase و جدول trades با سیاست RLS باید ایجاد شود؛ سپس Project URL و anon key را در این قسمت وارد کنید. کلید Service Role هرگز نباید در این فایل قرار بگیرد.</p>
-        <div class="form-grid" style="margin-top:14px"><div class="form-field"><label>Supabase Project URL</label><input id="sbUrl" placeholder="https://your-project.supabase.co" dir="ltr"></div><div class="form-field"><label>Supabase Anon / Publishable Key</label><input id="sbKey" placeholder="sb_publishable_..." dir="ltr"></div><div class="form-field" style="align-self:end"><button class="btn btn-primary" id="connectSupabase">ذخیره تنظیمات اتصال</button></div></div>
-        <div class="setting-row"><div><strong>وضعیت اتصال</strong><p id="sbStatus">اتصال ابری پیکربندی نشده است.</p></div><button class="btn" id="syncNow">همگام‌سازی</button></div>
-        <p class="footnote">برای امنیت، این HTML باید فقط با حساب کاربری خودت استفاده شود. سیاست‌های RLS باید دسترسی هر کاربر را فقط به رکوردهای خودش محدود کنند. راه‌اندازی Supabase و تست همگام‌سازی مرحله بعدی است.</p>
-      </div>
     </div>
   </section>
 </main>
 </div>
 
+<section id="authGate" class="auth-gate" aria-hidden="true">
+ <div class="auth-glow auth-glow-a"></div><div class="auth-glow auth-glow-b"></div>
+ <div class="auth-card">
+  <div class="auth-brand"><div class="auth-mark">M</div><div><div class="auth-brand-name">MARKET ACTION</div><div class="auth-brand-sub">PERSONAL TRADING TERMINAL</div></div></div>
+  <div class="auth-kicker">PRIVATE WORKSPACE · SECURE ACCESS</div>
+  <h1 class="auth-title display" id="authTitle">ورود به فضای معاملاتی</h1>
+  <p class="auth-desc" id="authDesc">برای دسترسی به ژورنال و تحلیل‌های شخصی خود وارد حساب کاربری‌ات شو.</p>
+  <div class="auth-tabs"><button type="button" class="active" id="authLoginTab">ورود</button><button type="button" id="authSignupTab">ایجاد حساب</button></div>
+  <form id="authForm" class="auth-form" novalidate>
+   <label id="authNameWrap" hidden><span>نام نمایشی</span><input id="authName" type="text" autocomplete="name" placeholder="نام شما"></label>
+   <label><span>ایمیل</span><input id="authEmail" type="email" autocomplete="email" placeholder="name@example.com" dir="ltr" required></label>
+   <label><span>رمز عبور</span><input id="authPassword" type="password" autocomplete="current-password" placeholder="حداقل ۸ کاراکتر" dir="ltr" minlength="8" required></label>
+   <div class="auth-message" id="authMessage" role="status" aria-live="polite"></div>
+   <button class="btn btn-primary auth-submit" id="authSubmit" type="submit">ورود امن <span>←</span></button>
+  </form>
+  <button class="auth-forgot" id="authForgot" type="button">رمز عبورم را فراموش کرده‌ام</button>
+  <div class="auth-foot"><span class="auth-lock">▣</span> اتصال امن با Supabase Auth <span>·</span> اطلاعات هر حساب جداگانه نگهداری می‌شود</div>
+ </div>
+ <div class="auth-side-note"><span>01 / PRIVATE JOURNAL</span><span>02 / PERFORMANCE ANALYTICS</span><span>03 / PERSONAL MARKET INTELLIGENCE</span></div>
+</section>
 <div class="modal-backdrop" id="tradeModal">
  <div class="modal">
   <div class="modal-head"><h2 id="modalTitle">ثبت معامله جدید</h2><button class="icon-btn" id="closeModal">×</button></div>
@@ -729,7 +750,6 @@ html body #cmdBtn::before{content:"";display:none;width:20px;height:20px;backgro
 })();
 const $=id=>document.getElementById(id);
 const STORE='nexora_trading_journal_v1';
-const SETTINGS='nexora_settings_v1';
 const sampleTrades=[
 {id:'sample-qnt',date:'2022-11-05',symbol:'QNT',type:'Daily',direction:'Short',entry:215,sl:225,tp:165,exit:170,lowest:170,highest:219,amount:2,positionSize:430,plannedRR:5,pnl:90,costs:0,deposit:0,withdraw:0,slOptimizer:0.4,strategy:'',timeframe:'',marketCondition:'',entryReason:'',exitReason:'',emotion:'',ruleViolation:false,mistakes:'',lessons:'',beforeImage:'',afterImage:'',sample:true},
 {id:'sample-btc',date:'2022-11-07',symbol:'BTC',type:'Amirof',direction:'Long',entry:19600,sl:17600,tp:28200,exit:17600,lowest:17600,highest:21250,amount:.1,positionSize:1960,plannedRR:4.3,pnl:-200,costs:0,deposit:0,withdraw:0,slOptimizer:1,strategy:'',timeframe:'',marketCondition:'',entryReason:'',exitReason:'',emotion:'',ruleViolation:false,mistakes:'',lessons:'',beforeImage:'',afterImage:'',sample:true}
@@ -815,12 +835,33 @@ function applyTheme(light){document.body.classList.toggle('light',light);documen
 $('themeBtn').onclick=()=>applyTheme(!document.body.classList.contains('light'));$('settingsTheme').onclick=()=>applyTheme(!document.body.classList.contains('light'));
 $('clearSamples').onclick=()=>{if(confirm('دو رکورد نمونه QNT و BTC حذف شوند؟')){trades=trades.filter(t=>!t.sample);save();toast('رکوردهای نمونه حذف شدند.')}};
 $('clearAll').onclick=()=>{if(confirm('تمام معاملات و تصاویر ذخیره‌شده حذف شوند؟ ابتدا از اطلاعات خروجی JSON بگیرید.')){trades=[];save();toast('تمام داده‌ها حذف شدند.')}};
-function updateSyncStatus(){let connected=!!supabaseClient;$('syncStatus').textContent=connected?'Supabase پیکربندی شده؛ برای همگام‌سازی از تنظیمات استفاده کن.':'ذخیره‌سازی محلی فعال است. اتصال Supabase هنوز تنظیم نشده.';$('syncDot').style.background=connected?'#3179f5':'#6f757c'}
-function loadSbSettings(){let s=JSON.parse(localStorage.getItem(SETTINGS)||'{}');$('sbUrl').value=s.url||'';$('sbKey').value=s.key||'';if(s.url&&s.key&&window.supabase){try{supabaseClient=window.supabase.createClient(s.url,s.key);$('sbStatus').textContent='تنظیمات ذخیره شده‌اند؛ برای تست اتصال کلیک کنید.'}catch(e){}}updateSyncStatus()}
-async function ensureSupabase(){if(window.supabase)return true;return new Promise((resolve,reject)=>{let sc=document.createElement('script');sc.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';sc.onload=()=>resolve(!!window.supabase);sc.onerror=()=>reject(new Error('بارگذاری کتابخانه Supabase ممکن نشد. اتصال اینترنت را بررسی کنید.'));document.head.appendChild(sc)})}
-$('connectSupabase').onclick=async()=>{let url=$('sbUrl').value.trim(),key=$('sbKey').value.trim();if(!url.startsWith('https://')||!key){toast('Project URL و anon/publishable key معتبر وارد کنید.');return}localStorage.setItem(SETTINGS,JSON.stringify({url,key}));try{if(!await ensureSupabase())throw new Error('Supabase SDK در دسترس نیست');supabaseClient=window.supabase.createClient(url,key);$('sbStatus').textContent='تنظیمات ذخیره شد. جدول و RLS باید در Supabase آماده باشند.';updateSyncStatus();toast('تنظیمات Supabase ذخیره شد.')}catch(e){toast('خطا در ساخت اتصال')}};
-$('syncNow').onclick=async()=>{if(!supabaseClient){toast('ابتدا اتصال Supabase را تنظیم کنید.');return}try{let {data:{user},error:authErr}=await supabaseClient.auth.getUser();if(authErr)throw authErr;if(!user){let email=prompt('برای همگام‌سازی، ایمیل حساب Supabase را وارد کنید:');if(!email)return;let password=prompt('رمز عبور حساب Supabase:');if(!password)return;let sign=await supabaseClient.auth.signInWithPassword({email,password});if(sign.error)throw sign.error}let {data:{user:u}}=await supabaseClient.auth.getUser();let rows=trades.map(t=>({id:t.id,user_id:u.id,payload:t,updated_at:new Date().toISOString()}));let result=await supabaseClient.from('trades').upsert(rows,{onConflict:'id'});if(result.error)throw result.error;$('sbStatus').textContent=`همگام‌سازی موفق: ${rows.length} معامله در فضای ابری ثبت شد.`;toast('همگام‌سازی موفق بود.')}catch(e){$('sbStatus').textContent='خطا: '+e.message;toast('همگام‌سازی انجام نشد؛ جدول و RLS را بررسی کنید.')}};
-function init(){let now=new Date();$('todayLabel').textContent=new Intl.DateTimeFormat('en-US',{weekday:'short',day:'2-digit',month:'short',year:'numeric'}).format(now).toUpperCase();applyTheme(localStorage.getItem('nexora_light')==='1');loadSbSettings();renderAll()}
+const SUPABASE_URL='https://srveldheqgnnlufzkoxs.supabase.co';
+const SUPABASE_KEY='sb_publishable_1cuwY54_Mce6qz7POF1F5Q_22yldVpu';
+let authMode='login', currentUser=null, syncBusy=false;
+async function ensureSupabase(){if(window.supabase?.createClient)return true;return new Promise((resolve,reject)=>{const sc=document.createElement('script');sc.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';sc.onload=()=>resolve(!!window.supabase?.createClient);sc.onerror=()=>reject(new Error('بارگذاری کتابخانه Supabase انجام نشد؛ اتصال اینترنت را بررسی کن.'));document.head.appendChild(sc)})}
+async function initSupabase(){await ensureSupabase();supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});const {data:{session},error}=await supabaseClient.auth.getSession();if(error)throw error;currentUser=session?.user||null;supabaseClient.auth.onAuthStateChange((event,session)=>{currentUser=session?.user||null;setAuthGate(!currentUser);updateSyncStatus();if(event==='SIGNED_IN'&&currentUser){setTimeout(()=>syncCloud({initial:true}).catch(e=>showAuthMessage(e.message,'error')),0)}});setAuthGate(!currentUser);updateSyncStatus();if(currentUser)await syncCloud({initial:true})}
+function setAuthGate(show){const g=$('authGate');if(!g)return;g.classList.toggle('show',!!show);g.setAttribute('aria-hidden',show?'false':'true');document.body.style.overflow=show?'hidden':'';if(!show){const a=$('accountBtn');if(a)a.textContent=currentUser?.email||'حساب کاربری'}}
+function showAuthMessage(msg,type=''){const e=$('authMessage');if(!e)return;e.textContent=msg||'';e.className='auth-message'+(type?' '+type:'')}
+function setAuthMode(mode){authMode=mode;const signup=mode==='signup';$('authLoginTab').classList.toggle('active',!signup);$('authSignupTab').classList.toggle('active',signup);$('authNameWrap').hidden=!signup;$('authTitle').textContent=signup?'ساخت حساب معاملاتی':'ورود به فضای معاملاتی';$('authDesc').textContent=signup?'حساب شخصی خودت را بساز تا معاملات و گزارش‌هایت بین دستگاه‌ها همگام شوند.':'برای دسترسی به ژورنال و تحلیل‌های شخصی خود وارد حساب کاربری‌ات شو.';$('authSubmit').innerHTML=signup?'ایجاد حساب امن <span>←</span>':'ورود امن <span>←</span>';$('authPassword').autocomplete=signup?'new-password':'current-password';$('authForgot').hidden=signup;showAuthMessage('')}
+async function blobToDataUrl(blob){return new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(String(r.result||''));r.onerror=()=>reject(r.error||new Error('خواندن تصویر از فضای ابری ناموفق بود.'));r.readAsDataURL(blob)})}
+async function cloudImageValue(value,path){if(!value)return '';if(typeof value==='string'&&value.startsWith('data:')){const blob=await (await fetch(value)).blob();const {error}=await supabaseClient.storage.from('trade-images').upload(path,blob,{upsert:true,contentType:blob.type||'image/jpeg',cacheControl:'3600'});if(error)throw error;return '@storage:'+path}return value}
+async function restoreCloudImage(value){if(typeof value!=='string'||!value.startsWith('@storage:'))return value||'';const path=value.slice(9);const {data,error}=await supabaseClient.storage.from('trade-images').download(path);if(error)throw error;return await blobToDataUrl(data)}
+async function syncCloud(opts={}){if(!supabaseClient||!currentUser)return false;if(syncBusy)return false;syncBusy=true;updateSyncStatus();try{
+ const {data:remote,error}=await supabaseClient.from('trades').select('id,user_id,payload,updated_at').eq('user_id',currentUser.id);if(error)throw error;
+ const localById=new Map(trades.map(t=>[String(t.id),t]));const merged=new Map();
+ for(const r of (remote||[])){if(!r.payload||!r.id)continue;const id=String(r.id),local=localById.get(id),cloud={...r.payload,id};if(!local?.beforeImage)cloud.beforeImage=await restoreCloudImage(cloud.beforeImage);if(!local?.afterImage)cloud.afterImage=await restoreCloudImage(cloud.afterImage);merged.set(id,cloud)}
+ localById.forEach((t,id)=>{const cloud=merged.get(id)||{};merged.set(id,{...cloud,...t,beforeImage:t.beforeImage||cloud.beforeImage||'',afterImage:t.afterImage||cloud.afterImage||''})});
+ const next=[...merged.values()];const rows=[];for(const t of next){const base=`${currentUser.id}/${encodeURIComponent(String(t.id))}`;const before=await cloudImageValue(t.beforeImage,`${base}/before.jpg`);const after=await cloudImageValue(t.afterImage,`${base}/after.jpg`);const payload={...t,beforeImage:before,afterImage:after};rows.push({id:String(t.id),user_id:currentUser.id,payload,updated_at:new Date().toISOString()})}
+ if(rows.length){const {error:upErr}=await supabaseClient.from('trades').upsert(rows,{onConflict:'id'});if(upErr)throw upErr}
+ trades=next;persistNow();renderAll();const msg=`${next.length} معامله همگام شد · تصاویر نیز در فضای ابری ذخیره شدند`;const st=$('syncStatus');if(st)st.textContent=msg;const dot=$('syncDot');if(dot)dot.style.background='#3179f5';return true;
+ }catch(e){const st=$('syncStatus');if(st)st.textContent='خطای همگام‌سازی: '+(e.message||e);throw e}finally{syncBusy=false;updateSyncStatus()}}
+function updateSyncStatus(){const st=$('syncStatus'),dot=$('syncDot');if(!st||!dot)return;st.textContent=currentUser?`متصل: ${currentUser.email} · همگام‌سازی دستی از نوار بالا`:'برای ذخیره و بازیابی ابری وارد حساب شو.';dot.style.background=currentUser?'#3179f5':'#6f757c';const b=$('accountBtn');if(b)b.textContent=currentUser?.email||'حساب کاربری'}
+$('authLoginTab').onclick=()=>setAuthMode('login');$('authSignupTab').onclick=()=>setAuthMode('signup');
+$('authForm').addEventListener('submit',async e=>{e.preventDefault();showAuthMessage('');const email=$('authEmail').value.trim(),password=$('authPassword').value,name=$('authName').value.trim(),btn=$('authSubmit');if(!email||!password){showAuthMessage('ایمیل و رمز عبور را وارد کن.','error');return}btn.disabled=true;btn.textContent='در حال برقراری اتصال…';try{await ensureSupabase();if(!supabaseClient)supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});if(authMode==='signup'){const {data,error}=await supabaseClient.auth.signUp({email,password,options:{data:{full_name:name}}});if(error)throw error;if(data.session){currentUser=data.user;setAuthGate(false);await syncCloud({initial:true})}else{showAuthMessage('حساب ساخته شد. ایمیل تأیید را باز کن و لینک تأیید را بزن؛ سپس وارد شو.','success')}}else{const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});if(error)throw error;currentUser=data.user;setAuthGate(false);updateSyncStatus();await syncCloud({initial:true})}}catch(err){showAuthMessage(err.message||'ورود انجام نشد. تنظیمات Auth و جدول trades را بررسی کن.','error')}finally{btn.disabled=false;btn.innerHTML=authMode==='signup'?'ایجاد حساب امن <span>←</span>':'ورود امن <span>←</span>'}});
+$('authForgot').onclick=async()=>{const email=$('authEmail').value.trim();if(!email){showAuthMessage('ابتدا ایمیل خود را وارد کن.','error');return}try{await ensureSupabase();if(!supabaseClient)supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);const {error}=await supabaseClient.auth.resetPasswordForEmail(email,{redirectTo:location.href.split('#')[0]});if(error)throw error;showAuthMessage('لینک بازیابی رمز عبور به ایمیلت ارسال شد.','success')}catch(e){showAuthMessage(e.message,'error')}};
+$('cloudSyncBtn').onclick=async()=>{if(!currentUser){setAuthGate(true);return}try{await syncCloud();toast('همگام‌سازی با موفقیت انجام شد.')}catch(e){toast('همگام‌سازی ناموفق بود: '+e.message)}};
+$('accountBtn').onclick=async()=>{if(!currentUser){setAuthGate(true);return}if(confirm('از حساب کاربری خارج می‌شوی؟ داده‌های محلی این دستگاه پاک نمی‌شوند.')){const {error}=await supabaseClient.auth.signOut();if(error)toast(error.message);else{currentUser=null;setAuthGate(true);updateSyncStatus()}}};
+function init(){let now=new Date();$('todayLabel').textContent=new Intl.DateTimeFormat('en-US',{weekday:'short',day:'2-digit',month:'short',year:'numeric'}).format(now).toUpperCase();applyTheme(localStorage.getItem('nexora_light')==='1');renderAll()}
 /* init() is called from the V7 layer */
 </script>
 
@@ -955,12 +996,7 @@ window.deleteTrade=function(id){const t=trades.find(x=>x.id===id);if(!t)return;c
 document.getElementById('clearSamples').onclick=async()=>{if(await v7Confirm('حذف رکوردهای نمونه','دو رکورد نمونه QNT و BTC حذف شوند؟','حذف نمونه‌ها')){const snap=[...trades];trades=trades.filter(t=>!t.sample);save();toast('رکوردهای نمونه حذف شدند.',{label:'بازگردانی',action:()=>{trades=snap;save()}})}};
 document.getElementById('clearAll').onclick=async()=>{if(await v7Confirm('حذف تمام داده‌ها','تمام معاملات و تصاویر ذخیره‌شده حذف شوند؟ (تا چند ثانیه امکان بازگردانی دارید؛ بهتر است قبلاً JSON بگیرید.)','حذف همه')){const snap=[...trades];trades=[];save();toast('تمام داده‌ها حذف شدند.',{label:'بازگردانی',action:()=>{trades=snap;save()}})}};
 
-/* ---------- Supabase: login form instead of prompt() ---------- */
-document.getElementById('syncNow').onclick=async()=>{if(!supabaseClient){toast('ابتدا اتصال Supabase را تنظیم کنید.');return}
- try{let {data:{user},error:ae}=await supabaseClient.auth.getUser();if(ae&&!/session/i.test(ae.message||''))throw ae;
-  if(!user){const v=await v7Dialog({title:'ورود به Supabase',body:'<p class="tiny">برای همگام‌سازی، ایمیل و رمز حساب Supabase خودت را وارد کن. رمز ذخیره نمی‌شود.</p>',fields:[{id:'email',label:'Email',type:'email',dir:'ltr',required:true},{id:'password',label:'Password',type:'password',dir:'ltr',required:true}],okText:'ورود و همگام‌سازی'});if(!v)return;const s=await supabaseClient.auth.signInWithPassword({email:v.email,password:v.password});if(s.error)throw s.error}
-  const {data:{user:u}}=await supabaseClient.auth.getUser();const rows=trades.map(t=>({id:t.id,user_id:u.id,payload:{...t,beforeImage:t.beforeImage?'[local-image]':'',afterImage:t.afterImage?'[local-image]':''},updated_at:new Date().toISOString()}));const r=await supabaseClient.from('trades').upsert(rows,{onConflict:'id'});if(r.error)throw r.error;document.getElementById('sbStatus').textContent=`همگام‌سازی موفق: ${rows.length} معامله (بدون تصاویر) در فضای ابری ثبت شد.`;toast('همگام‌سازی موفق بود.')}
- catch(e){document.getElementById('sbStatus').textContent='خطا: '+(e.message||e);toast('همگام‌سازی انجام نشد؛ جدول و RLS را بررسی کنید.')}};
+/* Supabase auth and cloud sync are initialized by the V8 auth layer above. */
 
 /* ---------- FX button 2 ---------- */
 (function(){const b=document.getElementById('openFxCalendar2');if(b)b.onclick=()=>window.open('https://www.fxstreet.com/economic-calendar','_blank','noopener')})();
@@ -1289,7 +1325,7 @@ function motionPass(){document.querySelectorAll('.kpi-value,#terminalBalance').f
 function setupSpotlight(){let raf=0;document.addEventListener('pointermove',e=>{if(raf)return;raf=requestAnimationFrame(()=>{raf=0;const p=e.target.closest&&e.target.closest('.panel,.kpi');if(p){const r=p.getBoundingClientRect();p.style.setProperty('--mx',(e.clientX-r.left)+'px');p.style.setProperty('--my',(e.clientY-r.top)+'px')}})},{passive:true})}
 (window.V7_RENDER_HOOKS=window.V7_RENDER_HOOKS||[]).push(motionPass);
 
-(async function boot(){try{await hydrateImages()}catch(e){console.error(e)}try{ensureEntryTimeField();buildSessionBar();buildRuleLab();buildRulesPanel();buildTimePanel();ensureCandlePanel();ensureStoryOv();ensureCmd();setupEconomic();setupDateField();setupPosition();setupPaste();setupSymbols();setupValidation();setupDrawer();setupSpotlight()}catch(e){console.error('[v7 build]',e)}init();updateTodayLabel();setInterval(updateTodayLabel,60000);window.v7Ready=true})();
+(async function boot(){try{await hydrateImages()}catch(e){console.error(e)}try{ensureEntryTimeField();buildSessionBar();buildRuleLab();buildRulesPanel();buildTimePanel();ensureCandlePanel();ensureStoryOv();ensureCmd();setupEconomic();setupDateField();setupPosition();setupPaste();setupSymbols();setupValidation();setupDrawer();setupSpotlight()}catch(e){console.error('[v7 build]',e)}init();try{await initSupabase()}catch(e){console.error('[supabase init]',e);setAuthGate(true);showAuthMessage('اتصال به سرویس ابری برقرار نشد: '+(e.message||e),'error')}updateTodayLabel();setInterval(updateTodayLabel,60000);window.v7Ready=true})();
 
 </script>
 </body>
